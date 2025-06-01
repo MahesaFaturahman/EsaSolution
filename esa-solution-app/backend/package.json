@@ -1,0 +1,12 @@
+/esa-solution-app
+  ├── /backend
+  │   ├── package.json
+  │   ├── server.js
+  │   └── ...
+  ├── /frontend
+  │   ├── index.html
+  │   ├── /css
+  │   │   └── styles.css
+  │   └── /js
+  │       └── script.js
+  └── ...

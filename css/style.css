@@ -1,0 +1,47 @@
+/* Custom styles for ESA Solution website */
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.hero-section {
+    background: url('../images/hero-bg.jpg') no-repeat center center/cover;
+    color: white;
+    padding: 100px 0;
+}
+
+.card {
+    border: none;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+}
+
+.contact-info h5 {
+    margin-top: 20px;
+}
+
+.btn-success {
+    background-color: #25D366;
+    border-color: #25D366;
+}
+
+.btn-success:hover {
+    background-color: #1DAE5B;
+    border-color: #1DAE5B;
+}
