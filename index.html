@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="id" id="htmlLang">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">ESA Solution - Software House Profesional</title>
+  <meta name="description" content="PT Energi Solusi Aplikasi - Mitra teknologi terpercaya untuk solusi berbasis Web, Mobile, dan Enterprise.">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --light-color: #f8f9fa;
+      --dark-color: #212529;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+    }
+    
+    .navbar {
+      background-color: var(--primary-color) !important;
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    
+    .navbar-brand img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      padding: 150px 0;
+      text-align: center;
+    }
+    
+    .hero-section h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero-section p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn-primary {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+      padding: 12px 30px;
+      font-weight: 500;
+      border-radius: 50px;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+      background-color: #2980b9;
+      border-color: #2980b9;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-outline-light {
+      padding: 12px 30px;
+      font-weight: 500;
+      border-radius: 50px;
+      transition: all 0.3s;
+    }
+    
+    .btn-outline-light:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .section-title {
+      position: relative;
+      margin-bottom: 50px;
+      padding-bottom: 15px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: var(--secondary-color);
+    }
+    
+    .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
+      height: 100%;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-img-top {
+      border-radius: 10px 10px 0 0;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .contact-info i {
+      color: var(--secondary-color);
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+    
+    footer {
+      background-color: var(--dark-color);
+      color: white;
+      padding: 40px 0 20px;
+    }
+    
+    .social-icons a {
+      color: white;
+      font-size: 1.2rem;
+      margin-right: 15px;
+      transition: all 0.3s;
+    }
+    
+    .social-icons a:hover {
+      color: var(--secondary-color);
+      transform: translateY(-3px);
+    }
+    
+    /* Language switcher */
+    .language-switcher {
+      margin-left: 15px;
+    }
+    
+    .language-switcher .dropdown-toggle {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    
+    .language-switcher .dropdown-menu {
+      min-width: auto;
+    }
+    
+    .language-switcher .dropdown-item {
+      padding: 5px 15px;
+    }
+    
+    .language-switcher .dropdown-item.active {
+      background-color: var(--secondary-color);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 1s ease-out forwards;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 100px 0;
+      }
+      
+      .hero-section h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-section p {
+        font-size: 1rem;
+      }
+      
+      .language-switcher {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="https://drive.google.com/uc?export=view&id=1uqFF6wXz2Dve38PPJNmwNJ-9SxM_mAp7"> ESA Solution
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home" data-i18n="menu.home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about" data-i18n="menu.about">Tentang Kami</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services" data-i18n="menu.services">Layanan</a></li>
+          <li class="nav-item"><a class="nav-link" href="#portfolio" data-i18n="menu.portfolio">Portofolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="menu.contact">Kontak</a></li>
+        </ul>
+        
+        <div class="language-switcher dropdown ms-3">
+          <button class="dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-globe me-1"></i> <span id="currentLanguage">ID</span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+            <li><a class="dropdown-item language-option" href="#" data-lang="id">Bahasa Indonesia</a></li>
+            <li><a class="dropdown-item language-option" href="#" data-lang="en">English</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="container">
+      <div class="animate-fade-in">
+        <h1 class="display-4 fw-bold" data-i18n="hero.title">Transformasi Digital Bisnis Anda</h1>
+        <p class="lead" data-i18n="hero.subtitle">Kami membantu bisnis Anda tumbuh dengan solusi teknologi terkini yang disesuaikan dengan kebutuhan khusus Anda.</p>
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+          <a href="#contact" class="btn btn-primary btn-lg px-4 gap-3" data-i18n="hero.cta1">Konsultasi</a>
+          <a href="#portfolio" class="btn btn-outline-light btn-lg px-4" data-i18n="hero.cta2">Lihat Portofolio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tentang Kami -->
+  <section id="about" class="py-5 bg-light">
+    <div class="container py-5">
+      <h2 class="text-center section-title" data-i18n="about.title">Tentang Kami</h2>
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tim ESA Solution" class="img-fluid rounded shadow">
+        </div>
+        <div class="col-lg-6">
+          <h3 data-i18n="about.company">PT Energi Solusi Aplikasi</h3>
+          <p data-i18n="about.description">ESA Solution adalah software house profesional yang berfokus pada pengembangan aplikasi web, mobile, dan sistem enterprise. Sejak berdiri pada tahun 2023, kami telah membantu berbagai macam industri.</p>
+          
+          <div class="row mt-4">
+            <div class="col-md-6 mb-3">
+              <h4><i class="fas fa-bullseye text-primary me-2"></i> <span data-i18n="about.vision">Visi</span></h4>
+              <p data-i18n="about.visionText">Menjadi mitra teknologi terdepan yang mendorong transformasi digital bisnis di Indonesia.</p>
+            </div>
+            <div class="col-md-6 mb-3">
+              <h4><i class="fas fa-tasks text-primary me-2"></i> <span data-i18n="about.mission">Misi</span></h4>
+              <ul>
+                <li data-i18n="about.mission1">Menyediakan solusi teknologi yang skalabel dan aman</li>
+                <li data-i18n="about.mission2">Memberikan pengalaman pengguna yang luar biasa</li>
+                <li data-i18n="about.mission3">Mendukung pertumbuhan bisnis melalui inovasi digital</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layanan -->
+  <section id="services" class="py-5">
+    <div class="container py-5">
+      <h2 class="text-center section-title" data-i18n="services.title">Layanan Kami</h2>
+      <p class="text-center mb-5" data-i18n="services.subtitle">Kami menawarkan berbagai layanan pengembangan perangkat lunak untuk memenuhi kebutuhan bisnis Anda</p>
+      
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" class="card-img-top" alt="Pembuatan Website">
+            <div class="card-body">
+              <h5 class="card-title" data-i18n="services.webDev">Pengembangan Website</h5>
+              <p class="card-text">
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.web1">Company Profile</span><br>
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.web2">E-commerce</span><br>
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.web3">Web Application</span><br>
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.web4">Landing Page</span>
+              </p>
+              <a href="#contact" class="btn btn-outline-primary" data-i18n="services.cta">Konsultasi Sekarang</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Aplikasi Mobile">
+            <div class="card-body">
+              <h5 class="card-title" data-i18n="services.mobileApp">Aplikasi Mobile</h5>
+              <p class="card-text">
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.mobile1">Android & iOS</span><br>
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.mobile2">Hybrid (Flutter)</span><br>
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.mobile3">Progressive Web Apps</span><br>
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.mobile4">Enterprise Mobility</span>
+              </p>
+              <a href="#contact" class="btn btn-outline-primary" data-i18n="services.cta">Konsultasi Sekarang</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" class="card-img-top" alt="Sistem Enterprise">
+            <div class="card-body">
+              <h5 class="card-title" data-i18n="services.enterprise">Sistem Enterprise</h5>
+              <p class="card-text">
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.enterprise1">ERP & CRM</span><br>
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.enterprise2">Sistem Inventory</span><br>
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.enterprise3">HR Management</span><br>
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.enterprise4">Business Intelligence</span>
+              </p>
+              <a href="#contact" class="btn btn-outline-primary" data-i18n="services.cta">Konsultasi Sekarang</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="UI/UX Design">
+            <div class="card-body">
+              <h5 class="card-title" data-i18n="services.design">UI/UX Design</h5>
+              <p class="card-text">
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.design1">User Research</span><br>
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.design2">Wireframing</span><br>
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.design3">Prototyping</span><br>
+                <i class="fas fa-check-circle text-success me-2"></i> <span data-i18n="services.design4">Usability Testing</span>
+              </p>
+              <a href="#contact" class="btn btn-outline-primary" data-i18n="services.cta">Konsultasi Sekarang</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portofolio -->
+  <section id="portfolio" class="py-5 bg-light">
+    <div class="container py-5">
+      <h2 class="text-center section-title" data-i18n="portfolio.title">Portofolio Kami</h2>
+      <p class="text-center mb-5" data-i18n="portfolio.subtitle">Beberapa proyek yang telah kami selesaikan untuk klien dari berbagai industri</p>
+      
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Sistem POS">
+            <div class="card-body">
+              <h5 class="card-title" data-i18n="portfolio.project1.title">Sistem POS Retail</h5>
+              <p class="card-text" data-i18n="portfolio.project1.description">Sistem point-of-sale untuk retail chain dengan 50+ cabang, dibangun dengan Laravel dan Vue.js.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-primary">Laravel</span>
+                <span class="badge bg-success">Vue.js</span>
+                <span class="badge bg-info">MySQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Aplikasi Logistic">
+            <div class="card-body">
+              <h5 class="card-title" data-i18n="portfolio.project2.title">Aplikasi Logistic</h5>
+              <p class="card-text" data-i18n="portfolio.project2.description">Sistem manajemen logistik dengan fitur track-and-trace real-time untuk perusahaan distribusi.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-primary">Node.js</span>
+                <span class="badge bg-success">React</span>
+                <span class="badge bg-info">MongoDB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="E-commerce">
+            <div class="card-body">
+              <h5 class="card-title" data-i18n="portfolio.project3.title">Platform E-commerce</h5>
+              <p class="card-text" data-i18n="portfolio.project3.description">Marketplace UMKM dengan integrasi pembayaran digital dan sistem referral.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-primary">PHP</span>
+                <span class="badge bg-success">JavaScript</span>
+                <span class="badge bg-info">PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="HR Management">
+            <div class="card-body">
+              <h5 class="card-title" data-i18n="portfolio.project4.title">HR Management System</h5>
+              <p class="card-text" data-i18n="portfolio.project4.description">Sistem terintegrasi untuk manajemen SDD, payroll, dan absensi karyawan.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-primary">Java</span>
+                <span class="badge bg-success">Spring Boot</span>
+                <span class="badge bg-info">Oracle</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Mobile App">
+            <div class="card-body">
+              <h5 class="card-title" data-i18n="portfolio.project5.title">Aplikasi Mobile Banking</h5>
+              <p class="card-text" data-i18n="portfolio.project5.description">Aplikasi perbankan dengan fitur transfer, pembayaran, dan investasi.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-primary">Flutter</span>
+                <span class="badge bg-success">Dart</span>
+                <span class="badge bg-info">Firebase</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="ERP System">
+            <div class="card-body">
+              <h5 class="card-title" data-i18n="portfolio.project6.title">Custom ERP System</h5>
+              <p class="card-text" data-i18n="portfolio.project6.description">Sistem ERP khusus untuk manufaktur dengan modul produksi dan inventory.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-primary">.NET</span>
+                <span class="badge bg-success">C#</span>
+                <span class="badge bg-info">SQL Server</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-5">
+        <a href="#contact" class="btn btn-primary btn-lg" data-i18n="portfolio.cta">Diskusikan Proyek Anda</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontak -->
+  <section id="contact" class="py-5">
+    <div class="container py-5">
+      <h2 class="text-center section-title" data-i18n="contact.title">Hubungi Kami</h2>
+      <p class="text-center mb-5" data-i18n="contact.subtitle">Kami siap membantu mewujudkan solusi digital untuk bisnis Anda</p>
+      
+      <div class="row">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title mb-4" data-i18n="contact.infoTitle">Informasi Kontak</h3>
+              
+              <div class="mb-4">
+                <h5><i class="fas fa-map-marker-alt text-primary me-2"></i> <span data-i18n="contact.address">Alamat Kantor</span></h5>
+                <p data-i18n="contact.addressText">Komplek ruko galeri Mediterania 2 no : N8M, <br>Jl. Pantai Indah Kapuk, RT.1/RW.16<br>Kapuk Muara, Kec. Penjaringan, Jkt Utara, DKI Jakarta 14660</p>
+              </div>
+              
+              <div class="mb-4">
+                <h5><i class="fas fa-phone-alt text-primary me-2"></i> <span data-i18n="contact.phone">Telepon</span></h5>
+                <p>081380804529</p>
+              </div>
+              
+              <div class="mb-4">
+                <h5><i class="fas fa-envelope text-primary me-2"></i> <span data-i18n="contact.email">Email</span></h5>
+                <p>Esainformatika@gmail.com</p>
+              </div>
+              
+              <div class="mb-4">
+                <h5><i class="fas fa-clock text-primary me-2"></i> <span data-i18n="contact.hours">Jam Operasional</span></h5>
+                <p data-i18n="contact.hoursText">Senin - Jumat: 09.00 - 17.00 WIB</p>
+              </div>
+              
+              <div class="social-icons mt-4">
+                <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title mb-4" data-i18n="contact.formTitle">Kirim Pesan</h3>
+              <form id="contactForm">
+                <div class="mb-3">
+                  <label for="name" class="form-label" data-i18n="contact.formName">Nama Lengkap</label>
+                  <input type="text" class="form-control" id="name" required>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="email" class="form-label" data-i18n="contact.formEmail">Email</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="phone" class="form-label" data-i18n="contact.formPhone">Nomor Telepon</label>
+                  <input type="tel" class="form-control" id="phone">
+                </div>
+                
+                <div class="mb-3">
+                  <label for="service" class="form-label" data-i18n="contact.formService">Layanan yang Diminati</label>
+                  <select class="form-select" id="service">
+                    <option selected data-i18n="contact.formServiceDefault">Pilih Layanan</option>
+                    <option data-i18n="services.webDev">Pengembangan Website</option>
+                    <option data-i18n="services.mobileApp">Aplikasi Mobile</option>
+                    <option data-i18n="services.enterprise">Sistem Enterprise</option>
+                    <option data-i18n="services.design">UI/UX Design</option>
+                    <option data-i18n="contact.formServiceOther">Lainnya</option>
+                  </select>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="message" class="form-label" data-i18n="contact.formMessage">Pesan</label>
+                  <textarea class="form-control" id="message" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-100" data-i18n="contact.formSubmit">Kirim Pesan</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <h5 class="mb-4">ESA Solution</h5>
+          <p data-i18n="footer.about">PT Energi Solusi Aplikasi adalah perusahaan pengembangan perangkat lunak profesional yang berkomitmen untuk memberikan solusi teknologi terbaik bagi bisnis Anda.</p>
+        </div>
+        
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+          <h5 class="mb-4" data-i18n="footer.menu">Menu</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#home" class="text-decoration-none" data-i18n="menu.home">Home</a></li>
+            <li class="mb-2"><a href="#about" class="text-decoration-none" data-i18n="menu.about">Tentang Kami</a></li>
+            <li class="mb-2"><a href="#services" class="text-decoration-none" data-i18n="menu.services">Layanan</a></li>
+            <li class="mb-2"><a href="#portfolio" class="text-decoration-none" data-i18n="menu.portfolio">Portofolio</a></li>
+            <li class="mb-2"><a href="#contact" class="text-decoration-none" data-i18n="menu.contact">Kontak</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="mb-4" data-i18n="footer.services">Layanan</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="text-decoration-none" data-i18n="services.webDev">Pengembangan Website</a></li>
+            <li class="mb-2"><a href="#" class="text-decoration-none" data-i18n="services.mobileApp">Aplikasi Mobile</a></li>
+            <li class="mb-2"><a href="#" class="text-decoration-none" data-i18n="services.enterprise">Sistem Enterprise</a></li>
+            <li class="mb-2"><a href="#" class="text-decoration-none" data-i18n="services.design">UI/UX Design</a></li>
+            <li class="mb-2"><a href="#" class="text-decoration-none" data-i18n="services.design">UI/UX Design</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-3 mb-4 mb-lg-0">
+          <h5 class="mb-4" data-i18n="footer.contact">Kontak</h5>
+          <ul class="list-unstyled contact-info">
+            <li class="mb-2">
+              <i class="fas fa-map-marker-alt me-2"></i>
+              <span data-i18n="contact.addressText">Komplek ruko galeri Mediterania 2 no : N8M, Jl. Pantai Indah Kapuk, RT.1/RW.16, Kapuk Muara, Kec. Penjaringan, Jkt Utara, DKI Jakarta 14660</span>
+            </li>
+            <li class="mb-2">
+              <i class="fas fa-phone-alt me-2"></i>
+              <span>081380804529</span>
+            </li>
+            <li class="mb-2">
+              <i class="fas fa-envelope me-2"></i>
+              <span>Esainformatika@gmail.com</span>
+            </li>
+          </ul>
+          <div class="social-icons mt-3">
+            <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4">
+      <div class="d-flex justify-content-between align-items-center flex-column flex-md-row">
+        <div>
+          <small>&copy; 2025 ESA Solution. All rights reserved.</small>
+        </div>
+        <div>
+          <small data-i18n="footer.powered">Dibuat dengan ❤️ oleh ESA Solution Team</small>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS and dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Optional: i18n JS for language switcher -->
+  <script>
+    // Simple i18n implementation for demo purposes
+    const translations = {
+      en: {
+        "menu.home": "Home",
+        "menu.about": "About",
+        "menu.services": "Services",
+        "menu.portfolio": "Portfolio",
+        "menu.contact": "Contact",
+        "hero.title": "Digital Transformation for Your Business",
+        "hero.subtitle": "We help your business grow with the latest technology solutions tailored to your needs.",
+        "hero.cta1": "Consult Now",
+        "hero.cta2": "See Portfolio",
+        "about.title": "About Us",
+        "about.company": "PT Energi Solusi Aplikasi",
+        "about.description": "ESA Solution is a professional software house focused on web, mobile, and enterprise application development. Since 2023, we have helped various industries.",
+        "about.vision": "Vision",
+        "about.visionText": "To be a leading technology partner driving digital transformation for businesses in Indonesia.",
+        "about.mission": "Mission",
+        "about.mission1": "Providing scalable and secure technology solutions",
+        "about.mission2": "Delivering an exceptional user experience",
+        "about.mission3": "Supporting business growth through digital innovation",
+        "services.title": "Our Services",
+        "services.subtitle": "We offer a range of software development services to meet your business needs",
+        "services.webDev": "Website Development",
+        "services.web1": "Company Profile",
+        "services.web2": "E-commerce",
+        "services.web3": "Web Application",
+        "services.web4": "Landing Page",
+        "services.mobileApp": "Mobile Application",
+        "services.mobile1": "Android & iOS",
+        "services.mobile2": "Hybrid (Flutter)",
+        "services.mobile3": "Progressive Web Apps",
+        "services.mobile4": "Enterprise Mobility",
+        "services.enterprise": "Enterprise System",
+        "services.enterprise1": "ERP & CRM",
+        "services.enterprise2": "Inventory System",
+        "services.enterprise3": "HR Management",
+        "services.enterprise4": "Business Intelligence",
+        "services.design": "UI/UX Design",
+        "services.design1": "User Research",
+        "services.design2": "Wireframing",
+        "services.design3": "Prototyping",
+        "services.design4": "Usability Testing",
+        "services.cta": "Consult Now",
+        "portfolio.title": "Our Portfolio",
+        "portfolio.subtitle": "Some projects we have completed for clients from various industries",
+        "portfolio.project1.title": "Retail POS System",
+        "portfolio.project1.description": "Point-of-sale system for a retail chain with 50+ branches, built with Laravel and Vue.js.",
+        "portfolio.project2.title": "Logistics Application",
+        "portfolio.project2.description": "Logistics management system with real-time track-and-trace for a distribution company.",
+        "portfolio.project3.title": "E-commerce Platform",
+        "portfolio.project3.description": "SME marketplace with digital payment integration and referral system.",
+        "portfolio.project4.title": "HR Management System",
+        "portfolio.project4.description": "Integrated system for HR, payroll, and attendance management.",
+        "portfolio.project5.title": "Mobile Banking App",
+        "portfolio.project5.description": "Banking app with transfer, payment, and investment features.",
+        "portfolio.project6.title": "Custom ERP System",
+        "portfolio.project6.description": "Custom ERP for manufacturing with production and inventory modules.",
+        "portfolio.cta": "Discuss Your Project",
+        "contact.title": "Contact Us",
+        "contact.subtitle": "We're ready to help realize the digital solution for your business",
+        "contact.infoTitle": "Contact Information",
+        "contact.address": "Office Address",
+        "contact.addressText": "Komplek ruko galeri Mediterania 2 no : N8M, Jl. Pantai Indah Kapuk, RT.1/RW.16, Kapuk Muara, Kec. Penjaringan, North Jakarta, DKI Jakarta 14660",
+        "contact.phone": "Phone",
+        "contact.email": "Email",
+        "contact.hours": "Office Hours",
+        "contact.hoursText": "Monday - Friday: 09.00 - 17.00 WIB",
+        "contact.formTitle": "Send a Message",
+        "contact.formName": "Full Name",
+        "contact.formEmail": "Email",
+        "contact.formPhone": "Phone Number",
+        "contact.formService": "Interested Service",
+        "contact.formServiceDefault": "Select Service",
+        "contact.formMessage": "Message",
+        "contact.formSubmit": "Send Message",
+        "contact.formServiceOther": "Other",
+        "footer.about": "PT Energi Solusi Aplikasi is a professional software development company committed to providing the best technology solutions for your business.",
+        "footer.menu": "Menu",
+        "footer.services": "Services",
+        "footer.contact": "Contact",
+        "footer.powered": "Made with ❤️ by ESA Solution Team"
+      },
+      id: {
+        // All Indonesian translations already present in your HTML as default
+      }
+    };
+
+    function updateLanguage(lang) {
+      document.getElementById('currentLanguage').textContent = lang.toUpperCase();
+      document.getElementById('htmlLang').setAttribute('lang', lang);
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+    }
+
+    document.querySelectorAll('.language-option').forEach(item => {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        const lang = this.getAttribute('data-lang');
+        updateLanguage(lang);
+        document.querySelectorAll('.language-option').forEach(opt => opt.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Set default language (id)
+    updateLanguage('id');
+  </script>
+</body>
+</html>
