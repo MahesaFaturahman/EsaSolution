@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     :root {
       --primary-color: #2c3e50;
@@ -202,6 +204,21 @@
       animation: fadeIn 1s ease-out forwards;
     }
     
+    /* Formspree success message */
+    .alert-success {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    /* reCAPTCHA styling */
+    .g-recaptcha {
+      margin-bottom: 20px;
+    }
+    
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .hero-section {
@@ -254,6 +271,12 @@
       </div>
     </div>
   </nav>
+
+  <!-- Success Message -->
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Terima kasih!</strong> Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 
   <!-- Hero Section -->
   <section id="home" class="hero-section">
@@ -524,25 +547,25 @@
           <div class="card h-100">
             <div class="card-body">
               <h3 class="card-title mb-4" data-i18n="contact.formTitle">Kirim Pesan</h3>
-              <form id="contactForm">
+              <form id="contactForm" action="https://formspree.io/f/mgvyqqkb" method="POST">
                 <div class="mb-3">
                   <label for="name" class="form-label" data-i18n="contact.formName">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="name" required>
+                  <input type="text" class="form-control" id="name" name="name" required>
                 </div>
                 
                 <div class="mb-3">
                   <label for="email" class="form-label" data-i18n="contact.formEmail">Email</label>
-                  <input type="email" class="form-control" id="email" required>
+                  <input type="email" class="form-control" id="email" name="email" required>
                 </div>
                 
                 <div class="mb-3">
                   <label for="phone" class="form-label" data-i18n="contact.formPhone">Nomor Telepon</label>
-                  <input type="tel" class="form-control" id="phone">
+                  <input type="tel" class="form-control" id="phone" name="phone">
                 </div>
                 
                 <div class="mb-3">
                   <label for="service" class="form-label" data-i18n="contact.formService">Layanan yang Diminati</label>
-                  <select class="form-select" id="service">
+                  <select class="form-select" id="service" name="service">
                     <option selected data-i18n="contact.formServiceDefault">Pilih Layanan</option>
                     <option data-i18n="services.webDev">Pengembangan Website</option>
                     <option data-i18n="services.mobileApp">Aplikasi Mobile</option>
@@ -554,10 +577,16 @@
                 
                 <div class="mb-3">
                   <label for="message" class="form-label" data-i18n="contact.formMessage">Pesan</label>
-                  <textarea class="form-control" id="message" rows="5" required></textarea>
+                  <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
                 </div>
                 
-                <button type="submit" class="btn btn-primary w-100" data-i18n="contact.formSubmit">Kirim Pesan</button>
+                <!-- reCAPTCHA -->
+                <div class="g-recaptcha mb-3" data-sitekey="6Ld3XzApAAAAAJ5Z7qJ5v5z5Z5Z5Z5Z5Z5Z5Z5Z5"></div>
+                
+                <button type="submit" class="btn btn-primary w-100" data-i18n="contact.formSubmit">
+                  <span class="submit-text">Kirim Pesan</span>
+                  <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
               </form>
             </div>
           </div>
@@ -592,7 +621,6 @@
             <li class="mb-2"><a href="#" class="text-decoration-none" data-i18n="services.webDev">Pengembangan Website</a></li>
             <li class="mb-2"><a href="#" class="text-decoration-none" data-i18n="services.mobileApp">Aplikasi Mobile</a></li>
             <li class="mb-2"><a href="#" class="text-decoration-none" data-i18n="services.enterprise">Sistem Enterprise</a></li>
-            <li class="mb-2"><a href="#" class="text-decoration-none" data-i18n="services.design">UI/UX Design</a></li>
             <li class="mb-2"><a href="#" class="text-decoration-none" data-i18n="services.design">UI/UX Design</a></li>
           </ul>
         </div>
@@ -635,6 +663,60 @@
 
   <!-- Bootstrap 5 JS and dependencies -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Formspree Handling -->
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const form = e.target;
+      const submitButton = form.querySelector('button[type="submit"]');
+      const submitText = form.querySelector('.submit-text');
+      const spinner = form.querySelector('.spinner-border');
+      
+      // Show loading state
+      submitText.textContent = 'Mengirim...';
+      spinner.classList.remove('d-none');
+      submitButton.disabled = true;
+      
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          // Show success message
+          const successAlert = document.querySelector('.alert-success');
+          successAlert.style.display = 'block';
+          
+          // Hide after 5 seconds
+          setTimeout(() => {
+            successAlert.style.display = 'none';
+          }, 5000);
+          
+          // Reset form
+          form.reset();
+          if (window.grecaptcha) {
+            grecaptcha.reset();
+          }
+        } else {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Terjadi kesalahan saat mengirim pesan');
+        }
+      } catch (error) {
+        alert('Error: ' + error.message);
+        console.error('Form submission error:', error);
+      } finally {
+        // Reset button state
+        submitText.textContent = 'Kirim Pesan';
+        spinner.classList.add('d-none');
+        submitButton.disabled = false;
+      }
+    });
+  </script>
   <!-- Optional: i18n JS for language switcher -->
   <script>
     // Simple i18n implementation for demo purposes
