@@ -19,8 +19,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- reCAPTCHA -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     :root {
       --primary-color: #2c3e50;
@@ -212,11 +210,6 @@
       right: 20px;
       z-index: 1000;
       animation: fadeIn 0.5s ease-out;
-    }
-    
-    /* reCAPTCHA styling */
-    .g-recaptcha {
-      margin-bottom: 20px;
     }
     
     /* Responsive adjustments */
@@ -580,9 +573,6 @@
                   <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
                 </div>
                 
-                <!-- reCAPTCHA -->
-                <div class="g-recaptcha mb-3" data-sitekey="6Ld3XzApAAAAAJ5Z7qJ5v5z5Z5Z5Z5Z5Z5Z5Z5Z5"></div>
-                
                 <button type="submit" class="btn btn-primary w-100" data-i18n="contact.formSubmit">
                   <span class="submit-text">Kirim Pesan</span>
                   <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
@@ -699,9 +689,6 @@
           
           // Reset form
           form.reset();
-          if (window.grecaptcha) {
-            grecaptcha.reset();
-          }
         } else {
           const errorData = await response.json();
           throw new Error(errorData.error || 'Terjadi kesalahan saat mengirim pesan');
